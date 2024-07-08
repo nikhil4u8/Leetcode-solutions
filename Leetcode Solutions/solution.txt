@@ -1,0 +1,20 @@
+1.Design problem: implement k largest elements with a heap if you could take advantage of p computers 
+    that can do the computation simultaneously.To solve this, interviewer wanted me to find the k 
+    largest elements for p equivalent partitions of the array simultaneously, and then keep deleting 
+    all of the minimums from each priority queue until there are k elements left in all of the p 
+    priority queues combined.
+2.Design problem: merge multiple incoming streams with a priority queue
+
+==> ANSWER
+1.parallel processing is done through P computers => an array is given which is partitioned into p 
+processor host using a data partitioner => in each host we can have a heap which will find top k 
+element for that processor host and then at the end we will merge all the top K elements in each 
+partition (same as merge n sorted list ques on leetcode - 
+https://leetcode.com/problems/merge-k-sorted-lists/) and find top K among those merged list (Refer 
+this for better understanding - https://serhatgiydiren.github.io/assets/hh_htmhp.png).
+
+2.Multiple coming stream could be treated as batch processing so we could consider each batch as a 
+array and then when 2 batches comes (say B1,B2) then merge both and form another array M1 => 
+M1 array = Merge(B1,B2) => when next batch of incoming stream comes then do M2 array = Merge(M1,B4) 
+[https://stackoverflow.com/questions/7948989/understanding-and-solving-k-way-merge-sort] or a MapReduce
+algo can be used (https://serhatgiydiren.github.io/assets/hh_mrj.png) 
